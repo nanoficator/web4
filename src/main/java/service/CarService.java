@@ -39,4 +39,21 @@ public class CarService {
         List<Car> listCars = new LinkedList<>();
         return listCars;
     }
+
+//    Проверка наличия запрашиваемой машины в базе
+    public boolean isExistCar (String brand, String model, String licensePlate) {
+        return false;
+    }
+
+//    Получить ID по Бренду, Марке и Номеру
+    public Long getId(String brand, String model, String licensePlate) {
+        Long id = new Long(0);
+        return id;
+    }
+
+//    Продать машину по ID
+    public Car sellCarByID (Long id) {
+        Car soldCar = new Car();
+        return soldCar;
+    }
 }
