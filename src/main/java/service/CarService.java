@@ -54,7 +54,7 @@ public class CarService {
         return soldCar;
     }
 
-//    Удалить все машины из БД
     public void dellAllCars() {
+        new CarDao(sessionFactory.openSession()).dellAllCars();
     }
 }

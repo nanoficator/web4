@@ -28,19 +28,25 @@ public class CarDao {
 
     public int carBrandAmount(String brand) {
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("FROM Car WHERE brand = :brand");
+        Query query = session.createQuery("from Car where brand = :brand");
         query.setParameter("brand", brand);
         List<Car> cars = query.list();
-        int amount = cars.size();
         transaction.commit();
         session.close();
-        return amount;
+        return cars.size();
     }
 
     public boolean addCar(Car car) {
         session.save(car);
         session.close();
         return true;
+    }
+
+    public void dellAllCars() {
+        Transaction transaction = session.beginTransaction();
+        session.createQuery("clear table Car");
+        transaction.commit();
+        session.close();
     }
 
 }
