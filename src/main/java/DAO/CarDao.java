@@ -40,7 +40,7 @@ public class CarDao {
 
     public void deleteAllCars() {
         Transaction transaction = session.beginTransaction();
-        session.createQuery("delete from Car");
+        session.createQuery("delete from Car").executeUpdate();
         transaction.commit();
         session.close();
     }

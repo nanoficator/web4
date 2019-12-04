@@ -33,7 +33,7 @@ public class DailyReportDao {
 
     public void deleteAllReports() {
         Transaction transaction = session.beginTransaction();
-        session.createQuery("delete from DailyReport");
+        session.createQuery("delete from DailyReport").executeUpdate();
         transaction.commit();
         session.close();
     }
