@@ -54,7 +54,7 @@ public class CarService {
         return soldCar;
     }
 
-    public void dellAllCars() {
-        new CarDao(sessionFactory.openSession()).dellAllCars();
+    public void deleteAllCars() {
+        new CarDao(sessionFactory.openSession()).deleteAllCars();
     }
 }

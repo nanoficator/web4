@@ -31,9 +31,9 @@ public class DailyReportDao {
         return lastDailyReport;
     }
 
-    public void dellAllReports() {
+    public void deleteAllReports() {
         Transaction transaction = session.beginTransaction();
-        session.createQuery("clear table DailyReports");
+        session.createQuery("delete DailyReports");
         transaction.commit();
         session.close();
     }

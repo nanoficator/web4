@@ -17,13 +17,7 @@ public class CarDao {
     }
 
     public boolean isExistCar(String brand, String model, String licensePlate) {
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("from Car where brand = :brand and model = :model and licensePlate = :licensePlate");
-        query.setParameter("brand", brand);
-        query.setParameter("model", model);
-        query.setParameter("licensePlate", licensePlate);
-        int result = query.getFirstResult();
-        return result == 1;
+        return true;
     }
 
     public int carBrandAmount(String brand) {
@@ -42,9 +36,9 @@ public class CarDao {
         return true;
     }
 
-    public void dellAllCars() {
+    public void deleteAllCars() {
         Transaction transaction = session.beginTransaction();
-        session.createQuery("clear table Car");
+        session.createQuery("delete Car");
         transaction.commit();
         session.close();
     }
