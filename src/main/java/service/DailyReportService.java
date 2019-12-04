@@ -37,4 +37,8 @@ public class DailyReportService {
     public void dellAllReports() {
     }
 
+//    Сформировать отчет за день
+    public void createDailyReport() {
+
+    }
 }
