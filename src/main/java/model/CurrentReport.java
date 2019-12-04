@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "cars")
-public class Car {
+public class CurrentReport {
 
     @Id
     @Column(name = "id")
@@ -24,11 +24,11 @@ public class Car {
     @Column(name = "price")
     private Long price;
 
-    public Car() {
+    public CurrentReport() {
 
     }
 
-    public Car(String brand, String model, String licensePlate, Long price) {
+    public CurrentReport(String brand, String model, String licensePlate, Long price) {
         this.brand = brand;
         this.model = model;
         this.licensePlate = licensePlate;
@@ -73,16 +73,6 @@ public class Car {
 
     public void setPrice(Long price) {
         this.price = price;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
-        return Objects.equals(brand, car.brand) &&
-                Objects.equals(model, car.model) &&
-                Objects.equals(licensePlate, car.licensePlate);
     }
 
 }

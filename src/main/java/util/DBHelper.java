@@ -1,6 +1,7 @@
 package util;
 
 import model.Car;
+import model.CurrentReport;
 import model.DailyReport;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -31,6 +32,7 @@ public class DBHelper {
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(Car.class);
         configuration.addAnnotatedClass(DailyReport.class);
+        configuration.addAnnotatedClass(CurrentReport.class);
         configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
         configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/car_showroom?serverTimezone=UTC");

@@ -2,31 +2,32 @@ package DAO;
 
 import model.Car;
 import model.CurrentReport;
+import model.DailyReport;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.Iterator;
 import java.util.List;
 
-public class CarDao {
-
+public class CurrentReportDao {
     private Session session;
 
-    public CarDao(Session session) {
+    public CurrentReportDao(Session session) {
         this.session = session;
     }
 
-    public List<Car> getAllData() {
+    public List<CurrentReport> getAllData() {
         Transaction transaction = session.beginTransaction();
-        List<Car> cars = session.createQuery("from Car").list();
+        List<CurrentReport> salesSheet = session.createQuery("from CurrentReport").list();
         transaction.commit();
         session.close();
-        return cars;
+        return salesSheet;
     }
 
     public void deleteAllData() {
         Transaction transaction = session.beginTransaction();
-        session.createQuery("delete from Car").executeUpdate();
+        session.createQuery("delete from CurrentReport").executeUpdate();
         transaction.commit();
         session.close();
     }
@@ -47,7 +48,7 @@ public class CarDao {
 
     public Car findData(Car car) {
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("from Car where brand = :brand and model = :model and licensePlate = :licensePlate");
+        Query query = session.createQuery("from CurrentReport where brand = :brand and model = :model and licensePlate = :licensePlate");
         query.setParameter("brand", car.getBrand());
         query.setParameter("model", car.getModel());
         query.setParameter("licensePlate", car.getLicensePlate());
@@ -57,14 +58,16 @@ public class CarDao {
         return carFromDB;
     }
 
-    public int carBrandAmount(String brand) {
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("from Car where brand = :brand");
-        query.setParameter("brand", brand);
-        List<Car> cars = query.list();
-        transaction.commit();
-        session.close();
-        return cars.size();
+    public DailyReport createDailyReport() {
+        Iterator<CurrentReport> iterator = getAllData().iterator();
+        Long earning = (long) 0;
+        Long soldCars = (long) 0;
+        while (iterator.hasNext()) {
+            CurrentReport sale = iterator.next();
+            earning += iterator.next().getPrice();
+            soldCars += 1;
+        }
+        return new DailyReport(earning, soldCars);
     }
 
 }
