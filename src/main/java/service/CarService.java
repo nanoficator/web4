@@ -32,29 +32,22 @@ public class CarService {
         return false;
     }
 
-//    Получить все машины из базы
     public List<Car> getAllCars() {
-        List<Car> listCars = new LinkedList<>();
-        return listCars;
+        return new CarDao(sessionFactory.openSession()).getAllCars();
     }
 
-    public boolean isExistCar(String brand, String model, String licensePlate) {
-        return new CarDao(sessionFactory.openSession()).isExistCar(brand, model, licensePlate);
+    public boolean sellCar (Car car) {
+        if (new CarDao(sessionFactory.openSession()).isExistCar(car)) {
+            return deleteCar(car);
+        }
+        return false;
     }
 
-//    Получить ID по Бренду, Марке и Номеру
-    public Long getId(String brand, String model, String licensePlate) {
-        Long id = new Long(0);
-        return id;
+    public boolean deleteCar(Car car) {
+        return new CarDao(sessionFactory.openSession()).deleteCar(car);
     }
 
-//    Продать машину по ID
-    public Car sellCarByID (Long id) {
-        Car soldCar = new Car();
-        return soldCar;
-    }
-
-    public void deleteAllCars() {
-        new CarDao(sessionFactory.openSession()).deleteAllCars();
+    public boolean deleteAllCars() {
+        return new CarDao(sessionFactory.openSession()).deleteAllCars();
     }
 }

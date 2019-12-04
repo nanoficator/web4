@@ -1,5 +1,6 @@
 package DAO;
 
+import com.google.protobuf.DescriptorProtos;
 import model.Car;
 import model.DailyReport;
 import org.hibernate.Query;
@@ -16,8 +17,21 @@ public class CarDao {
         this.session = session;
     }
 
-    public boolean isExistCar(String brand, String model, String licensePlate) {
-        return true;
+    public List<Car> getAllCars() {
+        Transaction transaction = session.beginTransaction();
+        return session.createQuery("from Car").list();
+    }
+
+    public boolean isExistCar(Car car) {
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("from Car where brand = :brand and model = :model and licensePlate = :licensePlate");
+        query.setParameter("brand", car.getBrand());
+        query.setParameter("model", car.getModel());
+        query.setParameter("licensePlate", car.getLicensePlate());
+        Car carFromDB = (Car) query.uniqueResult();
+        transaction.commit();
+        session.close();
+        return car.equals(carFromDB);
     }
 
     public int carBrandAmount(String brand) {
@@ -38,11 +52,24 @@ public class CarDao {
         return true;
     }
 
-    public void deleteAllCars() {
+    public boolean deleteCar (Car car) {
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("delete from Car where brand = :brand and model = :model and licensePlate = :licensePlate");
+        query.setParameter("brand", car.getBrand());
+        query.setParameter("model", car.getModel());
+        query.setParameter("licensePlate", car.getLicensePlate());
+        query.executeUpdate();
+        transaction.commit();
+        session.close();
+        return true;
+    }
+
+    public boolean deleteAllCars() {
         Transaction transaction = session.beginTransaction();
         session.createQuery("delete from Car").executeUpdate();
         transaction.commit();
         session.close();
+        return true;
     }
 
 }
