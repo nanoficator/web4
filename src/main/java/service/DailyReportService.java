@@ -32,4 +32,9 @@ public class DailyReportService {
     public DailyReport getLastReport() {
         return null;
     }
+
+    //    Удалить все отчеты из БД
+    public void dellAllReports() {
+    }
+
 }

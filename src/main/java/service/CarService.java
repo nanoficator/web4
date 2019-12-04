@@ -56,4 +56,8 @@ public class CarService {
         Car soldCar = new Car();
         return soldCar;
     }
+
+//    Удалить все машины из БД
+    public void dellAllCars() {
+    }
 }
