@@ -16,7 +16,7 @@ public class DailyReportServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Gson gson = new Gson();
         if (req.getPathInfo().contains("all")) {
-            String json = gson.toJson(DailyReportService.getInstance().getAllDatas());
+            String json = gson.toJson(DailyReportService.getInstance().getAllData());
             System.out.println(json);
             resp.setStatus(HttpServletResponse.SC_OK);
         } else if (req.getPathInfo().contains("last")) {

@@ -66,12 +66,12 @@ public class DailyReportDao {
         session.close();
     }
 
-//    public DailyReport getLastReport() {
-//        Transaction transaction = session.beginTransaction();
-//        DailyReport lastDailyReport = (DailyReport) session.createQuery("FROM DailyReports WHERE").uniqueResult();
-//        transaction.commit();
-//        session.close();
-//        return lastDailyReport;
-//    }
+    public DailyReport getLastReport() {
+        Transaction transaction = session.beginTransaction();
+        DailyReport lastDailyReport = (DailyReport) session.createQuery("from DailyReports where id order by desc").uniqueResult();
+        transaction.commit();
+        session.close();
+        return lastDailyReport;
+    }
 
 }

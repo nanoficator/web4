@@ -4,6 +4,7 @@ import DAO.CarDao;
 import DAO.CurrentReportDao;
 import model.Car;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import util.DBHelper;
 
 import java.util.LinkedList;
@@ -28,29 +29,28 @@ public class CarService {
 
     public boolean addCar(Car car) {
         if (new CarDao(sessionFactory.openSession()).carBrandAmount(car.getBrand()) < 10) {
-            return new CarDao(sessionFactory.openSession()).addCar(car);
+            new CarDao(sessionFactory.openSession()).addData(car);
+            return true;
         }
         return false;
     }
 
     public List<Car> getAllCars() {
-        return new CarDao(sessionFactory.openSession()).getAllCars();
+        return new CarDao(sessionFactory.openSession()).getAllData();
     }
 
     public boolean sellCar (Car car) {
-        Car carFromDB = new CarDao(sessionFactory.openSession()).findCarFromDB(car);
+        Car carFromDB = new CarDao(sessionFactory.openSession()).findData(car);
         if (car.equals(carFromDB)) {
-            new
+            new CarDao(sessionFactory.openSession()).deleteData(carFromDB);
+            new CurrentReportDao(sessionFactory.openSession()).addData(carFromDB);
+            return true;
         }
-        return deleteCar(car);
         return false;
     }
 
-    public boolean deleteCar(Car car) {
-        return new CarDao(sessionFactory.openSession()).deleteCar(car);
-    }
-
     public boolean deleteAllCars() {
-        return new CarDao(sessionFactory.openSession()).deleteAllCars();
+        new CarDao(sessionFactory.openSession()).deleteAllData();
+        return true;
     }
 }

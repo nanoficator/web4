@@ -26,7 +26,7 @@ public class DailyReportService {
         return dailyReportService;
     }
 
-    public List<DailyReport> getAllDatas() {
+    public List<DailyReport> getAllData() {
         return new DailyReportDao(sessionFactory.openSession()).getAllData();
     }
 
@@ -35,7 +35,7 @@ public class DailyReportService {
     }
 
     public void deleteAllReports() {
-        new DailyReportDao(sessionFactory.openSession()).deleteAllReports();
+        new DailyReportDao(sessionFactory.openSession()).deleteAllData();
     }
 
     public void createDailyReport() {
