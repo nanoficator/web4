@@ -1,5 +1,6 @@
 package service;
 
+import DAO.CarDao;
 import model.Car;
 import org.hibernate.SessionFactory;
 import util.DBHelper;
@@ -24,13 +25,10 @@ public class CarService {
         return carService;
     }
 
-//    Количество машин определенной марки
-    public int carBrandAmount(String brand) {
-        return 0;
-    }
-
-//    Добавить машину в базу
     public boolean addCar(Car car) {
+        if (new CarDao(sessionFactory.openSession()).carBrandAmount(car.getBrand()) < 10) {
+            return new CarDao(sessionFactory.openSession()).addCar(car);
+        }
         return false;
     }
 
@@ -40,9 +38,8 @@ public class CarService {
         return listCars;
     }
 
-//    Проверка наличия запрашиваемой машины в базе
-    public boolean isExistCar (String brand, String model, String licensePlate) {
-        return false;
+    public boolean isExistCar(String brand, String model, String licensePlate) {
+        return new CarDao(sessionFactory.openSession()).isExistCar(brand, model, licensePlate);
     }
 
 //    Получить ID по Бренду, Марке и Номеру

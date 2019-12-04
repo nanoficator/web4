@@ -18,8 +18,7 @@ public class ProducerServlet extends HttpServlet {
         String licensePlate = req.getParameter("licensePlate");
         Long price = Long.parseLong(req.getParameter("price"));
         Car newCar = new Car(brand, model, licensePlate, price);
-        if (CarService.getInstance().carBrandAmount(brand) < 10) {
-            CarService.getInstance().addCar(newCar);
+        if (CarService.getInstance().addCar(newCar)) {
             resp.setStatus(HttpServletResponse.SC_OK);
         } else {
             resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
