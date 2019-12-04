@@ -34,6 +34,10 @@ public class CurrentReportDao {
     }
 
     public void addData(Car car) {
+        CurrentReport sale = new CurrentReport();
+        sale.setCar(car);
+        sale.setPrice(car.getPrice());
+        sale.setId(car.getId());
         Transaction transaction = session.beginTransaction();
         session.save(car);
         transaction.commit();
