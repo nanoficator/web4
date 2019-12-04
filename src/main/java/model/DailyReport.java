@@ -53,12 +53,4 @@ public class DailyReport {
         this.soldCars = soldCars;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DailyReport dailyReport = (DailyReport) o;
-        return Objects.equals(earnings, dailyReport.earnings) &&
-                Objects.equals(soldCars, dailyReport.soldCars);
-    }
 }

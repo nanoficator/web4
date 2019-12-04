@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class CurrentReportDao {
+
     private Session session;
 
     public CurrentReportDao(Session session) {

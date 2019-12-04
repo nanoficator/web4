@@ -9,17 +9,10 @@ public class CurrentReport {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "brand")
-    private String brand;
-
-    @Column(name = "model")
-    private String model;
-
-    @Column(name = "licensePlate")
-    private String licensePlate;
+    @Column(name = "car")
+    private Car car;
 
     @Column(name = "price")
     private Long price;
@@ -28,43 +21,17 @@ public class CurrentReport {
 
     }
 
-    public CurrentReport(String brand, String model, String licensePlate, Long price) {
-        this.brand = brand;
-        this.model = model;
-        this.licensePlate = licensePlate;
+    public CurrentReport(Car car, Long price) {
+        this.car = car;
         this.price = price;
     }
 
-    public String getBrand() {
-        return brand;
+    public Car getCar() {
+        return car;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getLicensePlate() {
-        return licensePlate;
-    }
-
-    public void setLicensePlate(String licensePlate) {
-        this.licensePlate = licensePlate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     public Long getPrice() {
@@ -73,6 +40,14 @@ public class CurrentReport {
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

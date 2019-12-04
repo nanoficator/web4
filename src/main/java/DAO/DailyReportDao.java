@@ -1,14 +1,9 @@
 package DAO;
 
-import model.Car;
-import model.CurrentReport;
 import model.DailyReport;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import java.sql.ResultSet;
-import java.util.Iterator;
 import java.util.List;
 
 public class DailyReportDao {

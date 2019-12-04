@@ -3,6 +3,7 @@ package service;
 import DAO.CarDao;
 import DAO.CurrentReportDao;
 import model.Car;
+import model.CurrentReport;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import util.DBHelper;
@@ -41,9 +42,9 @@ public class CarService {
 
     public boolean sellCar (Car car) {
         Car carFromDB = new CarDao(sessionFactory.openSession()).findData(car);
-        if (car.equals(carFromDB)) {
+        if (carFromDB.getId() != 0) {
             new CarDao(sessionFactory.openSession()).deleteData(carFromDB);
-            new CurrentReportDao(sessionFactory.openSession()).addData(carFromDB);
+            CurrentReportService.getInstance().addSale(carFromDB);
             return true;
         }
         return false;

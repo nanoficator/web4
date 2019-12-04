@@ -1,5 +1,7 @@
 package service;
 
+import DAO.CurrentReportDao;
+import model.Car;
 import model.CurrentReport;
 import model.DailyReport;
 import org.hibernate.SessionFactory;
@@ -20,6 +22,11 @@ public class CurrentReportService {
             currentReportService = new CurrentReportService(DBHelper.getSessionFactory());
         }
         return currentReportService;
+    }
+
+    public boolean addSale(Car car) {
+        new CurrentReportDao(sessionFactory.openSession()).addData(car);
+        return true;
     }
 
     public DailyReport closeSalesSheet() {
