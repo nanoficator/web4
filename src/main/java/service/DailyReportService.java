@@ -28,17 +28,16 @@ public class DailyReportService {
         return new DailyReportDao(sessionFactory.openSession()).getAllDailyReport();
     }
 
-
     public DailyReport getLastReport() {
-        return null;
+        return new DailyReportDao(sessionFactory.openSession()).getLastReport();
     }
 
-    //    Удалить все отчеты из БД
     public void dellAllReports() {
+        new DailyReportDao(sessionFactory.openSession()).dellAllReports();
     }
 
-//    Сформировать отчет за день
     public void createDailyReport() {
-
+        new DailyReportDao(sessionFactory.openSession()).createDailyReport();
     }
+
 }
