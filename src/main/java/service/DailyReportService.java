@@ -34,8 +34,9 @@ public class DailyReportService {
         return new DailyReportDao(sessionFactory.openSession()).getLastReport();
     }
 
-    public void deleteAllReports() {
+    public boolean deleteAllReports() {
         new DailyReportDao(sessionFactory.openSession()).deleteAllData();
+        return true;
     }
 
     public void createDailyReport() {
