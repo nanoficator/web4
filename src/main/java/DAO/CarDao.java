@@ -31,7 +31,9 @@ public class CarDao {
     }
 
     public boolean addCar(Car car) {
+        Transaction transaction = session.beginTransaction();
         session.save(car);
+        transaction.commit();
         session.close();
         return true;
     }
