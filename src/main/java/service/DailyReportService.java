@@ -1,7 +1,6 @@
 package service;
 
 import DAO.DailyReportDao;
-import model.CurrentReport;
 import model.DailyReport;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -40,8 +39,8 @@ public class DailyReportService {
     }
 
     public void createDailyReport() {
-        DailyReport dailyReport = CurrentReportService.getInstance().closeSalesSheet();
-        new DailyReportDao(sessionFactory.openSession()).createDailyReport(dailyReport);
+//        DailyReport dailyReport = CurrentReportService.getInstance().closeSalesSheet();
+//        new DailyReportDao(sessionFactory.openSession()).createDailyReport(dailyReport);
     }
 
 }

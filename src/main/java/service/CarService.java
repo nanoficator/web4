@@ -1,14 +1,9 @@
 package service;
 
 import DAO.CarDao;
-import DAO.CurrentReportDao;
 import model.Car;
-import model.CurrentReport;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import util.DBHelper;
-
-import java.util.LinkedList;
 import java.util.List;
 
 public class CarService {
@@ -44,7 +39,7 @@ public class CarService {
         Car carFromDB = new CarDao(sessionFactory.openSession()).findData(car);
         if (carFromDB.getId() != 0) {
             new CarDao(sessionFactory.openSession()).deleteData(carFromDB);
-            CurrentReportService.getInstance().addSale(carFromDB);
+            SoldCarService.getInstance().addSoldCar(carFromDB);
             return true;
         }
         return false;

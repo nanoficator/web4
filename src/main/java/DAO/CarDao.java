@@ -1,7 +1,6 @@
 package DAO;
 
 import model.Car;
-import model.CurrentReport;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

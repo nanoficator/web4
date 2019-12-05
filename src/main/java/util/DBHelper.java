@@ -1,20 +1,12 @@
 package util;
 
 import model.Car;
-import model.CurrentReport;
 import model.DailyReport;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
+import model.SoldCar;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.internal.SessionFactoryImpl;
 import org.hibernate.service.ServiceRegistry;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-
 
 public class DBHelper {
 
@@ -32,7 +24,7 @@ public class DBHelper {
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(Car.class);
         configuration.addAnnotatedClass(DailyReport.class);
-        configuration.addAnnotatedClass(CurrentReport.class);
+        configuration.addAnnotatedClass(SoldCar.class);
         configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
         configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/car_showroom?serverTimezone=UTC");
