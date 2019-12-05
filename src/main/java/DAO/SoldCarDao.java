@@ -32,7 +32,9 @@ public class SoldCarDao {
 
     public void addData(Car car) {
         Transaction transaction = session.beginTransaction();
-        session.save(car);
+        Query query = session.createQuery("insert into SoldCar (id, brand, model, licensePlate, price) select id, brand, model, licensePlate, price from Car where id = :id");
+        query.setParameter("id", car.getId());
+        query.executeUpdate();
         transaction.commit();
         session.close();
     }

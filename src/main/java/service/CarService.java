@@ -36,11 +36,8 @@ public class CarService {
     }
 
     public boolean sellCar (Car car) {
-        Car carFromDB = new CarDao(sessionFactory.openSession()).findData(car);
-        if (carFromDB.getId() != 0) {
-            new CarDao(sessionFactory.openSession()).deleteData(carFromDB);
-            SoldCarService.getInstance().addSoldCar(carFromDB);
-            return true;
+        if (car.getId() != 0) {
+            new CarDao(sessionFactory.openSession()).deleteData(car);
         }
         return false;
     }
@@ -48,5 +45,13 @@ public class CarService {
     public boolean deleteAllCars() {
         new CarDao(sessionFactory.openSession()).deleteAllData();
         return true;
+    }
+
+    public Car findCar(Car car) {
+        Car carFromDB = new CarDao(sessionFactory.openSession()).findData(car);
+        if (carFromDB.getId() != 0) {
+            return carFromDB;
+        }
+        return null;
     }
 }
