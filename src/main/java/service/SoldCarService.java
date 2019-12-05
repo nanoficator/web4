@@ -1,11 +1,14 @@
 package service;
 
-import DAO.CarDao;
 import DAO.SoldCarDao;
 import model.Car;
+import model.DailyReport;
+import model.SoldCar;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import util.DBHelper;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class SoldCarService {
@@ -41,7 +44,7 @@ public class SoldCarService {
         return false;
     }
 
-    public List<Car> getAllSoldCars() {
+    public List<SoldCar> getAllSoldCars() {
         return new SoldCarDao(sessionFactory.openSession()).getAllData();
     }
 
@@ -49,6 +52,19 @@ public class SoldCarService {
     public boolean deleteAllSoldCars() {
         new SoldCarDao(sessionFactory.openSession()).deleteAllData();
         return true;
+    }
+
+    public DailyReport createDailyReport() {
+        List<SoldCar> sellsSheet = new SoldCarDao(sessionFactory.openSession()).getAllData();
+        Long earning = (long) 0;
+        Long soldCars = (long) 0;
+        Iterator<SoldCar> iterator = sellsSheet.iterator();
+        SoldCar car = iterator.next();
+        while (iterator.hasNext()) {
+            earning += car.getPrice();
+            soldCars += 1;
+        }
+        return new DailyReport(soldCars, earning);
     }
 
 }

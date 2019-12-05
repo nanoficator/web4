@@ -45,7 +45,7 @@ public class DailyReportDao {
 
     public DailyReport findData(DailyReport dailyReport) {
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("from CurrentReport where earnings = :earnings and soldCars = :soldCars");
+        Query query = session.createQuery("from DailyReport where earnings = :earnings and soldCars = :soldCars");
         query.setParameter("earnings", dailyReport.getEarnings());
         query.setParameter("soldCars", dailyReport.getSoldCars());
         DailyReport dailyReportFromDB = (DailyReport) query.uniqueResult();
@@ -54,16 +54,20 @@ public class DailyReportDao {
         return dailyReportFromDB;
     }
 
-    public void createDailyReport(DailyReport dailyReport) {
+    public DailyReport findDataById(Long id) {
         Transaction transaction = session.beginTransaction();
-        session.save(dailyReport);
+        Query query = session.createQuery("from DailyReport where id = :id");
+        query.setParameter("id", id);
+        DailyReport dailyReport = (DailyReport) query.uniqueResult();
         transaction.commit();
         session.close();
+        return dailyReport;
     }
 
-    public DailyReport getLastReport() {
+    public DailyReport getLastData() {
         Transaction transaction = session.beginTransaction();
-        DailyReport lastDailyReport = (DailyReport) session.createQuery("from DailyReports where id order by desc").uniqueResult();
+        Query query = session.createQuery("from DailyReport order by id desc");
+        DailyReport lastDailyReport = (DailyReport) query.iterate().next();
         transaction.commit();
         session.close();
         return lastDailyReport;

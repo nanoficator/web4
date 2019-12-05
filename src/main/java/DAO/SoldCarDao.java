@@ -1,6 +1,7 @@
 package DAO;
 
 import model.Car;
+import model.SoldCar;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,9 +16,9 @@ public class SoldCarDao {
         this.session = session;
     }
 
-    public List<Car> getAllData() {
+    public List<SoldCar> getAllData() {
         Transaction transaction = session.beginTransaction();
-        List<Car> soldCars = session.createQuery("from SoldCar").list();
+        List<SoldCar> soldCars = session.createQuery("from SoldCar").list();
         transaction.commit();
         session.close();
         return soldCars;

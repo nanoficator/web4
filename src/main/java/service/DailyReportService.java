@@ -25,12 +25,12 @@ public class DailyReportService {
         return dailyReportService;
     }
 
-    public List<DailyReport> getAllData() {
+    public List<DailyReport> getAllReports() {
         return new DailyReportDao(sessionFactory.openSession()).getAllData();
     }
 
     public DailyReport getLastReport() {
-        return new DailyReportDao(sessionFactory.openSession()).getLastReport();
+        return new DailyReportDao(sessionFactory.openSession()).getLastData();
     }
 
     public boolean deleteAllReports() {
@@ -39,8 +39,7 @@ public class DailyReportService {
     }
 
     public void createDailyReport() {
-//        DailyReport dailyReport = CurrentReportService.getInstance().closeSalesSheet();
-//        new DailyReportDao(sessionFactory.openSession()).createDailyReport(dailyReport);
+        DailyReport dailyReport = SoldCarService.getInstance().createDailyReport();
+        new DailyReportDao(sessionFactory.openSession()).addData(dailyReport);
     }
-
 }

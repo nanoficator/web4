@@ -1,6 +1,6 @@
 package servlet;
 
-import service.DailyReportService;
+import service.SoldCarService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +12,6 @@ public class NewDayServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        DailyReportService.getInstance().createDailyReport();
+        SoldCarService.getInstance().createDailyReport();
     }
 }
