@@ -25,7 +25,7 @@ public class CarDao {
 
     public void deleteAllData() {
         Transaction transaction = session.beginTransaction();
-        session.createQuery("delete from Car").executeUpdate();
+        session.createQuery("delete Car").executeUpdate();
         transaction.commit();
         session.close();
     }

@@ -29,7 +29,7 @@ public class DailyReportDao {
 
     public void deleteAllData() {
         Transaction transaction = session.beginTransaction();
-        session.createQuery("delete from DailyReport").executeUpdate();
+        session.createQuery("delete DailyReport").executeUpdate();
         transaction.commit();
         session.close();
     }
@@ -71,21 +71,11 @@ public class DailyReportDao {
 
     public DailyReport getLastData() {
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("from DailyReport");
-        Iterator<DailyReport> iterator = query.iterate();
-        DailyReport lastDailyReport = iterator.next();
+        List<DailyReport> dailyReportList = session.createQuery("from DailyReport order by id desc").list();
+        DailyReport lastDailyReport = dailyReportList.get(0);
         transaction.commit();
         session.close();
         return lastDailyReport;
     }
-
-//    public DailyReport getLastData() {
-//        Transaction transaction = session.beginTransaction();
-//        Query query = session.createQuery("from DailyReport order by id desc");
-//        DailyReport lastDailyReport = (DailyReport) query.;
-//        transaction.commit();
-//        session.close();
-//        return lastDailyReport;
-//    }
 
 }

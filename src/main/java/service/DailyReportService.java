@@ -41,5 +41,6 @@ public class DailyReportService {
     public void createDailyReport() {
         DailyReport dailyReport = SoldCarService.getInstance().createDailyReport();
         new DailyReportDao(sessionFactory.openSession()).addData(dailyReport);
+        SoldCarService.getInstance().deleteAllSoldCars();
     }
 }
