@@ -1,8 +1,6 @@
 package servlet;
 
-import model.SoldCar;
 import service.DailyReportService;
-import service.SoldCarService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

@@ -5,7 +5,6 @@ import model.Car;
 import model.DailyReport;
 import model.SoldCar;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import util.DBHelper;
 
 import java.util.Iterator;

@@ -1,9 +1,6 @@
 package model;
 
-import org.hibernate.Session;
-
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "daily_reports")

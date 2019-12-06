@@ -2,7 +2,6 @@ package servlet;
 
 import com.google.gson.Gson;
 import model.Car;
-import model.SoldCar;
 import service.CarService;
 import service.SoldCarService;
 
