@@ -59,12 +59,12 @@ public class SoldCarService {
         Long earning = (long) 0;
         Long soldCars = (long) 0;
         Iterator<SoldCar> iterator = sellsSheet.iterator();
-        SoldCar car = iterator.next();
         while (iterator.hasNext()) {
-            earning += car.getPrice();
+            SoldCar soldCar = iterator.next();
+            earning += soldCar.getPrice();
             soldCars += 1;
         }
-        return new DailyReport(soldCars, earning);
+        return new DailyReport(earning, soldCars);
     }
 
 }

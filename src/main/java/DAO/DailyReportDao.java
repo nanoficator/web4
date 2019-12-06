@@ -4,6 +4,11 @@ import model.DailyReport;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class DailyReportDao {
@@ -66,11 +71,21 @@ public class DailyReportDao {
 
     public DailyReport getLastData() {
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("from DailyReport order by id desc");
-        DailyReport lastDailyReport = (DailyReport) query.iterate().next();
+        Query query = session.createQuery("from DailyReport");
+        Iterator<DailyReport> iterator = query.iterate();
+        DailyReport lastDailyReport = iterator.next();
         transaction.commit();
         session.close();
         return lastDailyReport;
     }
+
+//    public DailyReport getLastData() {
+//        Transaction transaction = session.beginTransaction();
+//        Query query = session.createQuery("from DailyReport order by id desc");
+//        DailyReport lastDailyReport = (DailyReport) query.;
+//        transaction.commit();
+//        session.close();
+//        return lastDailyReport;
+//    }
 
 }
